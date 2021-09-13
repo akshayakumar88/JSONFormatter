@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Code Beauty</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta lang="en" name="description" content="Codebeauty beautifies or minifies the JSON code" />
+    <meta lang="en" name="keywords" content="JSON Formatter, JSON Beautifier, JSON Minifier, JSON Format, JSON Minify, Pretty Print JSON, JSON Pretty Printer, Beautify JSON, Minify JSON" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        body {
+            background-color: #1f4271;
+            margin:0px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white">
+        <div class="container">
+            <div class="row">
+                <span class="col">
+                    <a class="navbar-brand" href="#"><img src="jsonLogo.webp" alt="Codeshooter" /></a>
+                </span>
+                <nav class="navbar navbar-expand-sm bg-white navbar-white">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="#">Contact</a>
+                            </li>    
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="py-4">
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <textarea id="sourcetxt" rows="16" class="w-100 p-3 rounded d-inline-block" placeholder="Enter code to format"></textarea>
+                        <label class="mr-3 text-white btn btn-info btn-md">
+                            <input type="radio" name="formatin" value="Beautify" checked class="mr-1" /> Beautify
+                        </label>
+                        <label class="mr-3 text-white btn btn-info btn-md">
+                            <input type="radio" name="formatin" value="Minify" class="mr-1" /> Minify
+                        </label>
+                        <button onclick="format();" class="btn btn-md col-auto col-md-4 col-lg-3 float-right btn-danger border-warning">Format</button>
+    
+                    </div>
+                    <div class="col-lg-6">
+                        <textarea id="destinationtxt" rows="16" class="w-100 p-3 rounded d-inline-block" readonly placeholder="Formatted Text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+        let el_up = document.getElementById("sourcetxt"),
+        el_down = document.getElementById("destinationtxt");
+        // alert(optnval);
+        function format() {
+            let optnval = $('input[name="formatin"]:checked').val();
+            if(optnval === 'Beautify'){
+                let obj = JSON.parse(el_up.value)
+                el_down.value = JSON.stringify(obj, undefined, 4);
+            }
+            else {
+                let obj = JSON.stringify(JSON.parse(el_up.value))
+                el_down.value = obj;
+            }
+        }
+    </script>
+</body>
+</html>
